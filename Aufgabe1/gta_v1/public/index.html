@@ -61,11 +61,11 @@
 				<fieldset id="discovery__field">
 					<legend>Search</legend>
 
-                    <input id="discov-form-lat" name="latitude" type="number" value="49.01379" readonly>
-                    <input id="discov-form-lon"  name="longitude" type="number" value="8.390071" readonly>
+                    <input id="discov-form-lat"  name="latitude"  type="number" value="49.01379" readonly hidden>
+                    <input id="discov-form-lon"  name="longitude" type="number" value="8.390071" readonly hidden>
 
 					<label for="search-form-searchterm"> Search term or keywords: </label>
-					<input id="search-form-searchterm" type="text" maxlength=11 placeholder="e.g. Berlin"  pattern="#?[A-Za-z]{1,10}">
+					<input id="search-form-searchterm" name="searchterm" type="text" maxlength=11 placeholder="e.g. Berlin"  pattern="#?[A-Za-z]{1,10}">
 
 					<input type="submit" value="Search" />
 				</fieldset>
