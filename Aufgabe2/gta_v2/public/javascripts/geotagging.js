@@ -160,11 +160,11 @@ function updateLocation() {
         manager.initMap(lat, lon);
         manager.updateMarkers(lat, lon);
     });
+    document.getElementById("mapView").remove();
+    document.querySelector("#map span").remove();
 }
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
     updateLocation();
-    document.getElementById("mapView").remove();
-    document.querySelector("#map span").remove();
 });
