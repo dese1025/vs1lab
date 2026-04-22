@@ -141,7 +141,40 @@ class MapManager {
  */
 // ... your code here ...
 
+function updateLocation() {
+    LocationHelper.findLocation((locationHelper) => { // Statische Methode
+        // Breiten- und Längengrad aus dem LocationHelper Objekt auslesen
+        const lat = locationHelper.latitude;
+        const lon = locationHelper.longitude;
+        
+        // Formularfelder im Tagging-Formular und Discovery-Formular suchen
+        // Wir nutzen QuerySelector, um alle Felder mit den entsprechenden IDs/Namen zu finden
+        const latInputs = document.querySelectorAll('input[name="latitude"], #latitude');
+        const lonInputs = document.querySelectorAll('input[name="longitude"], #longitude');
+
+        // Werte in die gefundenen Eingabefelder schreiben
+        latInputs.forEach(input => input.value = lat);
+        lonInputs.forEach(input => input.value = lon);
+
+        // 2. Teilaufgabe: Position auf Karte darstellen
+        const mapManager = new MapManager();
+        mapManager.initMap(lat, lon);
+        mapManager.updateMarkers(lat, lon);
+
+        // Platzhalter-Elemente (Bild und Beschreibung) entfernen
+        const mapPlaceholderImg = document.querySelector('#map img');
+        const mapPlaceholderText = document.querySelector('#map p');
+
+        if (mapPlaceholderImg) {
+            mapPlaceholderImg.remove();
+        }
+        if (mapPlaceholderText) {
+            mapPlaceholderText.remove();
+        }
+    });
+}
+
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
+    updateLocation();
 });
