@@ -138,6 +138,10 @@ input {
   display: block;
 }
 
+#map {
+  height: 500px;
+}
+
 
 /* Styles for Footer Component */
 
