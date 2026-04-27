@@ -16,6 +16,8 @@ const path = require('path');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
+const {tagList} = require("./models/geotag-examples");
+const InMemoryGeoTagStore = require("./models/geotag-store");
 
 /**
  * Set up Express app.
@@ -43,6 +45,7 @@ app.use(express.urlencoded({ extended: false }));
  */
 
 // TODO: ... your code here ...
+let geoTagStore = new InMemoryGeoTagStore(tagList);
 
 // Set dedicated script for routing
 app.use('/', indexRouter);

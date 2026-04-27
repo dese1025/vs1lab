@@ -26,6 +26,39 @@
 class InMemoryGeoTagStore{
 
     // TODO: ... your code here ...
+    #geoTagStore;
+
+    constructor(geoTagStore){
+        this.#geoTagStore = [];
+        for (const tag in geoTagStore) {
+            this.addGeoTag(tag);
+        }
+    }
+
+    addGeoTag (geoTag){
+        this.#geoTagStore.push(geoTag);
+    }
+
+    removeGeoTag (geoTag) {
+        let index = this.getIndexByName(geoTag.name);
+        this.#geoTagStore.splice(index, 1);
+    }
+
+    getNearbyGeoTags (location, radius) {
+        return null;
+    }
+
+    searchNearbyGeoTags (location, radius) {
+        return null;
+    }
+
+    getIndexByName (name){
+        for (let i = 0; i < this.#geoTagStore.length; i++) {
+            if (this.#geoTagStore[i].name === name) {
+                return i;
+            }
+        }
+    }
 
 }
 

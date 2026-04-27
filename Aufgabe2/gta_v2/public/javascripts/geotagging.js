@@ -159,8 +159,8 @@ function updateLocation() {
         disLongitude.value = lon;
         manager.initMap(lat, lon);
         manager.updateMarkers(lat, lon);
+        document.getElementById("mapView").remove();
     });
-    document.getElementById("mapView").remove();
     document.querySelector("#map span").remove();
 }
 
