@@ -46,22 +46,34 @@ function updateLocation() {
     const tagLongitude = document.getElementById("tag-form-lon");
     const disLatitude = document.getElementById("discov-form-lat");
     const disLongitude = document.getElementById("discov-form-lon");
+    const taglist = JSON.parse(document.getElementById("map").dataset.tags);
 
-    let lat;
-    let lon;
+    let lat = tagLatitude.value;
+    let lon = tagLongitude.value;
 
-    LocationHelper.findLocation((helper) => {
-        lat = helper.latitude;
-        lon = helper.longitude;
-        tagLatitude.value = lat;
-        tagLongitude.value = lon;
-        disLatitude.value = lat;
-        disLongitude.value = lon;
+    if (tagLatitude.value === "") {
+        LocationHelper.findLocation((helper) => {
+            lat = helper.latitude;
+            lon = helper.longitude;
+
+            tagLatitude.value = lat;
+            tagLongitude.value = lon;
+            disLatitude.value = lat;
+            disLongitude.value = lon;
+
+            manager.initMap(lat, lon);
+            manager.updateMarkers(lat, lon, taglist);
+
+            document.getElementById("mapView")?.remove();
+            document.querySelector("#map span")?.remove();
+        });
+    } else {
         manager.initMap(lat, lon);
-        manager.updateMarkers(lat, lon);
-    });
-    document.getElementById("mapView").remove();
-    document.querySelector("#map span").remove();
+        manager.updateMarkers(lat, lon, taglist);
+
+        document.getElementById("mapView")?.remove();
+        document.querySelector("#map span")?.remove();
+    }
 }
 
 // Wait for the page to fully load its DOM content, then call updateLocation

@@ -48,7 +48,11 @@ router.get('/', (req, res) => {
         latitude: req.body.latitude,
         longitude: req.body.longitude
     };
-    res.render('index', {taglist: geoTagStore.getNearbyGeoTags(location, 5000)});
+    res.render('index', {
+        latitude: location.latitude,
+        longitude: location.longitude,
+        taglist: geoTagStore.getNearbyGeoTags(location, 5000)
+    });
 });
 
 /**
@@ -78,7 +82,11 @@ router.post('/tagging', (req, res) => {
         latitude: latitude,
         longitude: longitude
     };
-    res.render('index', {taglist: geoTagStore.getNearbyGeoTags(location, 5000)});
+    res.render('index', {
+        latitude: latitude,
+        longitude: longitude,
+        taglist: geoTagStore.getNearbyGeoTags(location, 5000)
+    });
 });
 
 /**
@@ -104,7 +112,11 @@ router.post('/discovery', (req, res) => {
         latitude: req.body.latitude,
         longitude: req.body.longitude
     };
-    res.render('index', {taglist: geoTagStore.searchNearbyGeoTags(location, 5000, searchterm)});
+    res.render('index', {
+        latitude: location.latitude,
+        longitude: location.longitude,
+        taglist: geoTagStore.searchNearbyGeoTags(location, 5000, searchterm)
+    });
 });
 
 module.exports = router;

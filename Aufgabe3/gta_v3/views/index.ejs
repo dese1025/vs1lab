@@ -41,10 +41,10 @@
                 <legend>Add a new GeoTag</legend>
 
                 <label for="tag-form-lat"> Latitude: </label>
-                <input id="tag-form-lat" name="latitude" type="number" value="49.01379" readonly>
+                <input id="tag-form-lat" name="latitude" type="number" value="<%= latitude %>>" readonly>
 
                 <label for="tag-form-lon"> Longitude: </label>
-                <input id="tag-form-lon" name="longitude" type="number" value="8.390071" readonly>
+                <input id="tag-form-lon" name="longitude" type="number" value="<%= longitude %>" readonly>
 
                 <label for="tag-form-name"> Name: </label>
                 <input id="tag-form-name" name="name" type="text" placeholder="e.g. Central Berlin" required maxlength=10 pattern="[A-Za-z]+">
@@ -69,8 +69,8 @@
             <fieldset id="discovery__field">
                 <legend>Search</legend>
 
-                <input id="discov-form-lat"  name="latitude"  type="number" value="49.01379" readonly hidden>
-                <input id="discov-form-lon"  name="longitude" type="number" value="8.390071" readonly hidden>
+                <input id="discov-form-lat"  name="latitude"  type="number" value="<%= latitude %>" readonly hidden>
+                <input id="discov-form-lon"  name="longitude" type="number" value="<%= longitude %>" readonly hidden>
 
                 <label for="search-form-searchterm"> Search term or keywords: </label>
                 <input id="search-form-searchterm" name="searchterm" type="text" maxlength=11 placeholder="e.g. Berlin"  pattern="#?[A-Za-z]{1,10}">
@@ -85,12 +85,12 @@
             <div class="discovery__taglist col-5">
                 <ul class="discovery__results" id="discoveryResults">
                     <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
-                        <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
+                        <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hash %> </li>
                     <% }); %>
                 </ul>
             </div>
 
-            <div id="map" class="discovery__map col-7">
+            <div id="map" class="discovery__map col-7" data-tags='<%- JSON.stringify(taglist) %>'>
                 <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
                 <span>Result map</span>
             </div>
